@@ -1,0 +1,20 @@
+{
+  "name": "eduvia",
+  "version": "1.0.0",
+  "description": "Higher Education Clearinghouse",
+  "scripts": {
+    "dev": "python3 -m http.server 8080",
+    "build": "echo 'Static site - no build required'"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "education",
+    "online-degrees",
+    "universities"
+  ],
+  "author": "Eduvia",
+  "license": "ISC"
+}
