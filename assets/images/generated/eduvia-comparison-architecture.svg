@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 160" fill="none" width="100%" height="100%">
+  <!-- Background Canvas -->
+  <rect width="960" height="160" fill="#F8F5EF"/>
+  <rect x="0.5" y="0.5" width="959" height="159" stroke="#E5DED8"/>
+
+  <!-- Step Connecting Line -->
+  <line x1="80" y1="80" x2="880" y2="80" stroke="#E5DED8" stroke-width="2" stroke-dasharray="4 4"/>
+
+  <!-- Node 1: Programme -->
+  <g transform="translate(60, 44)">
+    <rect width="90" height="72" fill="#24152F" stroke="#24152F"/>
+    <text x="45" y="32" fill="#FF6B5A" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.08em">DIMENSION 01</text>
+    <text x="45" y="52" fill="#FFFDF9" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">PROGRAMME</text>
+  </g>
+
+  <!-- Node 2: University -->
+  <g transform="translate(190, 44)">
+    <rect width="90" height="72" fill="#FFFDF9" stroke="#24152F" stroke-width="1.5"/>
+    <text x="45" y="32" fill="#563566" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.08em">DIMENSION 02</text>
+    <text x="45" y="52" fill="#17141A" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">UNIVERSITY</text>
+  </g>
+
+  <!-- Node 3: Fees -->
+  <g transform="translate(320, 44)">
+    <rect width="90" height="72" fill="#FFFDF9" stroke="#E5DED8"/>
+    <text x="45" y="32" fill="#746B78" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.08em">DIMENSION 03</text>
+    <text x="45" y="52" fill="#17141A" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">TOTAL FEES</text>
+  </g>
+
+  <!-- Node 4: Duration -->
+  <g transform="translate(450, 44)">
+    <rect width="90" height="72" fill="#FFFDF9" stroke="#E5DED8"/>
+    <text x="45" y="32" fill="#746B78" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.08em">DIMENSION 04</text>
+    <text x="45" y="52" fill="#17141A" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">DURATION</text>
+  </g>
+
+  <!-- Node 5: Eligibility -->
+  <g transform="translate(580, 44)">
+    <rect width="90" height="72" fill="#FFFDF9" stroke="#E5DED8"/>
+    <text x="45" y="32" fill="#746B78" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.08em">DIMENSION 05</text>
+    <text x="45" y="52" fill="#17141A" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">ELIGIBILITY</text>
+  </g>
+
+  <!-- Node 6: Study Mode -->
+  <g transform="translate(710, 44)">
+    <rect width="90" height="72" fill="#FFFDF9" stroke="#E5DED8"/>
+    <text x="45" y="32" fill="#746B78" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.08em">DIMENSION 06</text>
+    <text x="45" y="52" fill="#17141A" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="800" text-anchor="middle">STUDY MODE</text>
+  </g>
+
+  <!-- Node 7: Accreditation -->
+  <g transform="translate(835, 44)">
+    <rect width="95" height="72" fill="#563566" stroke="#563566"/>
+    <text x="47.5" y="32" fill="#FFD0CA" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="0.08em">STATUTORY</text>
+    <text x="47.5" y="52" fill="#FFFDF9" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="800" text-anchor="middle">ACCREDITATION</text>
+  </g>
+</svg>

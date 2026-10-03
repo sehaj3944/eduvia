@@ -1,0 +1,910 @@
+/* ==========================================================================
+   EDUVIA AI — PROGRAMME DISCOVERY ASSISTANT (assets/css/test.css)
+   Architectural, Editorial, University-Grade AI Assistant UI
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. FLOATING LAUNCHER ("Ask Eduvia")
+   -------------------------------------------------------------------------- */
+.eduvia-ai-launcher {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface-raised, #2A2521);
+  color: var(--text, #F5F1EC);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 10px 18px 10px 14px;
+  border-radius: 9999px;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  text-decoration: none;
+}
+
+.eduvia-ai-launcher:hover {
+  background: #362F2A;
+  border-color: var(--trust, #3FB8A6);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px -4px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(63, 184, 166, 0.3);
+  color: #FFFFFF;
+}
+
+.eduvia-ai-launcher:focus-visible {
+  outline: 2px solid var(--trust, #3FB8A6);
+  outline-offset: 3px;
+}
+
+.eduvia-ai-launcher.is-active {
+  transform: scale(0.92);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.eduvia-ai-launcher-icon-wrapper {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(63, 184, 166, 0.2) 0%, rgba(255, 107, 53, 0.2) 100%);
+  border: 1px solid rgba(63, 184, 166, 0.4);
+  border-radius: 50%;
+  color: var(--trust, #3FB8A6);
+  flex-shrink: 0;
+}
+
+.eduvia-ai-launcher-icon-wrapper .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.eduvia-ai-pulse-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--trust, #3FB8A6);
+  border-radius: 50%;
+  border: 2px solid var(--surface-raised, #2A2521);
+}
+
+.eduvia-ai-launcher-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.eduvia-ai-launcher-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--text, #F5F1EC);
+}
+
+.eduvia-ai-launcher-tagline {
+  font-size: 0.6875rem;
+  color: var(--text-muted, #B8AFA6);
+  font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   2. BACKDROP & CHAT CONTAINER
+   -------------------------------------------------------------------------- */
+.eduvia-ai-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 7, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.eduvia-ai-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.eduvia-ai-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 440px;
+  max-width: calc(100vw - 32px);
+  height: 680px;
+  max-height: calc(100dvh - 48px);
+  background: var(--bg, #14110F);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.97);
+  transform-origin: bottom right;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+}
+
+.eduvia-ai-panel.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* --------------------------------------------------------------------------
+   3. CHAT HEADER
+   -------------------------------------------------------------------------- */
+.eduvia-ai-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: var(--surface, #1F1B18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  user-select: none;
+}
+
+.eduvia-ai-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eduvia-ai-logo-lockup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.eduvia-ai-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eduvia-ai-brand-logo {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.eduvia-ai-badge-ai {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.65625rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--cta, #FF6B35);
+  color: #14110F;
+  line-height: 1.1;
+  display: inline-block;
+}
+
+.eduvia-ai-badge-live {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(63, 184, 166, 0.15);
+  color: var(--trust, #3FB8A6);
+  border: 1px solid rgba(63, 184, 166, 0.3);
+  line-height: 1.2;
+}
+
+.eduvia-ai-subtitle {
+  font-size: 0.6875rem;
+  color: var(--text-muted, #B8AFA6);
+  margin: 0;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.eduvia-ai-logo-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  border-radius: 4px;
+  display: block;
+}
+.eduvia-ai-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.eduvia-ai-header-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted, #B8AFA6);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.eduvia-ai-header-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text, #F5F1EC);
+}
+
+.eduvia-ai-header-btn .material-symbols-outlined {
+  font-size: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   4. CONTEXT BAR (Active Page Intelligence)
+   -------------------------------------------------------------------------- */
+.eduvia-ai-context-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(63, 184, 166, 0.08);
+  border-bottom: 1px solid rgba(63, 184, 166, 0.2);
+  font-size: 0.75rem;
+  color: var(--text, #F5F1EC);
+}
+
+.eduvia-ai-context-banner-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.eduvia-ai-context-banner-text .material-symbols-outlined {
+  font-size: 14px;
+  color: var(--trust, #3FB8A6);
+  flex-shrink: 0;
+}
+
+.eduvia-ai-context-banner-btn {
+  background: none;
+  border: none;
+  color: var(--trust, #3FB8A6);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. CHAT MESSAGES CONTAINER
+   -------------------------------------------------------------------------- */
+.eduvia-ai-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg, #14110F);
+  scroll-behavior: smooth;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.eduvia-ai-body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* Initial Welcome / Hero State */
+.eduvia-ai-welcome-box {
+  background: var(--surface, #1F1B18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 4px;
+}
+
+.eduvia-ai-welcome-eyebrow {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--trust, #3FB8A6);
+  margin-bottom: 4px;
+}
+
+.eduvia-ai-welcome-heading {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text, #F5F1EC);
+  line-height: 1.3;
+  margin: 0 0 6px 0;
+}
+
+.eduvia-ai-welcome-sub {
+  font-size: 0.8125rem;
+  color: var(--text-muted, #B8AFA6);
+  margin: 0 0 14px 0;
+  line-height: 1.4;
+}
+
+.eduvia-ai-starter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.eduvia-ai-starter-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--surface-raised, #2A2521);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: var(--text, #F5F1EC);
+  font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+  font-size: 0.78125rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.eduvia-ai-starter-chip:hover {
+  background: #38312B;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  transform: translateX(2px);
+}
+
+.eduvia-ai-starter-chip .chip-icon {
+  font-size: 14px;
+  color: var(--cta, #FF6B35);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. MESSAGE ROWS & BUBBLES
+   -------------------------------------------------------------------------- */
+.eduvia-ai-msg-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: eduviaFadeSlideIn 0.2s ease-out forwards;
+}
+
+@keyframes eduviaFadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.eduvia-ai-msg-row.user {
+  align-items: flex-end;
+}
+
+.eduvia-ai-msg-row.assistant {
+  align-items: flex-start;
+}
+
+.eduvia-ai-msg-sender {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted, #B8AFA6);
+  margin-left: 2px;
+}
+
+.eduvia-ai-bubble {
+  max-width: 90%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.84375rem;
+  line-height: 1.5;
+  color: var(--text, #F5F1EC);
+  word-wrap: break-word;
+}
+
+.eduvia-ai-msg-row.user .eduvia-ai-bubble {
+  background: var(--surface-raised, #2A2521);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  border-bottom-right-radius: 2px;
+}
+
+.eduvia-ai-msg-row.assistant .eduvia-ai-bubble {
+  background: var(--surface, #1F1B18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom-left-radius: 2px;
+}
+
+.eduvia-ai-bubble p {
+  margin: 0 0 8px 0;
+}
+
+.eduvia-ai-bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.eduvia-ai-bubble ul, .eduvia-ai-bubble ol {
+  margin: 4px 0 8px 18px;
+  padding: 0;
+}
+
+.eduvia-ai-bubble li {
+  margin-bottom: 4px;
+}
+
+.eduvia-ai-bubble strong {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.eduvia-ai-bubble code {
+  font-family: var(--font-mono, monospace);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.78125rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. RICH PROGRAMME RECOMMENDATION CARD
+   -------------------------------------------------------------------------- */
+.eduvia-ai-card-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.eduvia-ai-prog-card {
+  background: var(--surface-raised, #2A2521);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.eduvia-ai-prog-card:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: #332D28;
+}
+
+.eduvia-ai-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.eduvia-ai-card-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.eduvia-ai-card-univ {
+  font-size: 0.75rem;
+  color: var(--text-muted, #B8AFA6);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.eduvia-ai-card-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.eduvia-ai-pill {
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text, #F5F1EC);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.eduvia-ai-pill.teal {
+  background: rgba(63, 184, 166, 0.15);
+  color: var(--trust, #3FB8A6);
+  border-color: rgba(63, 184, 166, 0.3);
+}
+
+.eduvia-ai-pill.gold {
+  background: rgba(227, 181, 107, 0.15);
+  color: var(--gold, #E3B56B);
+  border-color: rgba(227, 181, 107, 0.3);
+}
+
+.eduvia-ai-card-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.eduvia-ai-spec-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.eduvia-ai-spec-label {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #B8AFA6);
+  font-weight: 600;
+}
+
+.eduvia-ai-spec-val {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text, #F5F1EC);
+}
+
+.eduvia-ai-spec-val.fee {
+  color: var(--cta, #FF6B35);
+}
+
+.eduvia-ai-card-reason {
+  background: rgba(63, 184, 166, 0.08);
+  border-left: 2px solid var(--trust, #3FB8A6);
+  padding: 6px 8px;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: var(--text, #F5F1EC);
+}
+
+.eduvia-ai-card-reason strong {
+  color: var(--trust, #3FB8A6);
+}
+
+.eduvia-ai-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.eduvia-ai-btn-view {
+  flex: 1;
+  background: var(--cta, #FF6B35);
+  color: #14110F;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.eduvia-ai-btn-view:hover {
+  background: #E85A24;
+}
+
+.eduvia-ai-btn-sec {
+  background: transparent;
+  color: var(--text, #F5F1EC);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.eduvia-ai-btn-sec:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.eduvia-ai-btn-sec.is-shortlisted {
+  color: var(--cta, #FF6B35);
+  border-color: rgba(255, 107, 53, 0.4);
+  background: rgba(255, 107, 53, 0.1);
+}
+
+.eduvia-ai-btn-sec .material-symbols-outlined {
+  font-size: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   8. COMPARISON MINI MATRIX
+   -------------------------------------------------------------------------- */
+.eduvia-ai-compare-mini {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 0.71875rem;
+  background: var(--surface-raised, #2A2521);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.eduvia-ai-compare-mini th,
+.eduvia-ai-compare-mini td {
+  padding: 6px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: left;
+}
+
+.eduvia-ai-compare-mini th {
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-muted, #B8AFA6);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+}
+
+.eduvia-ai-compare-mini tr:last-child td {
+  border-bottom: none;
+}
+
+.eduvia-ai-compare-mini td strong {
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   9. QUICK ACTION & OPTION CHIPS
+   -------------------------------------------------------------------------- */
+.eduvia-ai-chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.eduvia-ai-chip-btn {
+  background: var(--surface-raised, #2A2521);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text, #F5F1EC);
+  border-radius: 9999px;
+  padding: 5px 10px;
+  font-size: 0.71875rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.eduvia-ai-chip-btn:hover {
+  background: #3A332E;
+  border-color: var(--trust, #3FB8A6);
+  color: #FFFFFF;
+}
+
+.eduvia-ai-chip-btn .chip-emoji {
+  font-size: 11px;
+}
+
+/* --------------------------------------------------------------------------
+   10. TYPING INDICATOR
+   -------------------------------------------------------------------------- */
+.eduvia-ai-typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px;
+  background: var(--surface, #1F1B18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  border-bottom-left-radius: 2px;
+  width: fit-content;
+}
+
+.eduvia-ai-typing span {
+  width: 6px;
+  height: 6px;
+  background-color: var(--trust, #3FB8A6);
+  border-radius: 50%;
+  animation: eduviaTypingBounce 1.2s infinite ease-in-out;
+}
+
+.eduvia-ai-typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.eduvia-ai-typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes eduviaTypingBounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. INPUT & FOOTER AREA
+   -------------------------------------------------------------------------- */
+.eduvia-ai-footer {
+  background: var(--surface, #1F1B18);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  padding: 12px 14px 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eduvia-ai-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg, #14110F);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 4px 6px 4px 12px;
+  transition: border-color 0.15s ease;
+}
+
+.eduvia-ai-input-wrapper:focus-within {
+  border-color: var(--trust, #3FB8A6);
+  box-shadow: 0 0 0 1px var(--trust, #3FB8A6);
+}
+
+.eduvia-ai-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text, #F5F1EC);
+  font-family: var(--font-body, 'Hanken Grotesk', sans-serif);
+  font-size: 0.84375rem;
+  padding: 8px 0;
+}
+
+.eduvia-ai-input::placeholder {
+  color: var(--text-muted, #B8AFA6);
+  opacity: 0.7;
+}
+
+.eduvia-ai-send-btn {
+  width: 34px;
+  height: 34px;
+  background: var(--cta, #FF6B35);
+  color: #14110F;
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.eduvia-ai-send-btn:hover:not(:disabled) {
+  background: #E85A24;
+  transform: scale(1.05);
+}
+
+.eduvia-ai-send-btn:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+
+.eduvia-ai-send-btn .material-symbols-outlined {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.eduvia-ai-disclaimer {
+  font-size: 0.625rem;
+  color: var(--text-muted, #B8AFA6);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* --------------------------------------------------------------------------
+   12. MOBILE & RESPONSIVE BEHAVIOR
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .eduvia-ai-launcher {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px)); /* Positioned cleanly above mobile sticky bottom bar */
+    right: 14px;
+    padding: 8px 12px;
+    font-size: 0.8125rem;
+    z-index: 1060;
+  }
+
+  .eduvia-ai-launcher-tagline {
+    display: none;
+  }
+
+  .eduvia-ai-panel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    max-width: 100%;
+    max-height: 100dvh;
+    border-radius: 0;
+    border: none;
+    z-index: 2500;
+  }
+
+  .eduvia-ai-header {
+    padding-top: max(14px, env(safe-area-inset-top, 0px));
+  }
+
+  .eduvia-ai-footer {
+    padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. REDUCED MOTION SUPPORT
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .eduvia-ai-launcher,
+  .eduvia-ai-panel,
+  .eduvia-ai-msg-row,
+  .eduvia-ai-typing span {
+    animation: none !important;
+    transition: none !important;
+  }
+}
