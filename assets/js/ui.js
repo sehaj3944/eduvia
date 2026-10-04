@@ -561,10 +561,10 @@ const EduviaUI = {
             <div class="skeleton-shimmer skeleton-avatar-lg" style="width: 72px; height: 72px; border-radius: 4px;"></div>
             <div class="flex-1">
               <div class="flex gap-2 mb-2">
-                <div class="skeleton-shimmer skeleton-badge"></div>
-                <div class="skeleton-shimmer skeleton-badge"></div>
+                <div class="skeleton-shimmer skeleton-badge" style="width: 65px; height: 18px;"></div>
+                <div class="skeleton-shimmer skeleton-badge" style="width: 75px; height: 18px;"></div>
               </div>
-              <div class="skeleton-shimmer skeleton-line-title" style="width: 75%; height: 28px;"></div>
+              <div class="skeleton-shimmer skeleton-line-title" style="width: 75%; height: 28px; margin-bottom: 6px;"></div>
               <div class="skeleton-shimmer skeleton-line-sm" style="width: 45%;"></div>
             </div>
           </div>
@@ -585,5 +585,64 @@ const EduviaUI = {
         </div>
       </section>
     `;
+  },
+
+  renderSkeletonPage(type = "programmes") {
+    return `
+      <div class="skeleton-page-loader skeleton-body" aria-busy="true" aria-label="Loading page content...">
+        <!-- Hero Dossier Skeleton -->
+        <div class="skeleton-hero-dossier">
+          <div class="skeleton-shimmer skeleton-badge" style="width: 140px; height: 22px;"></div>
+          <div class="skeleton-shimmer skeleton-line-title" style="width: 60%; height: 36px;"></div>
+          <div class="skeleton-shimmer skeleton-line" style="width: 80%; height: 16px;"></div>
+          <div class="skeleton-shimmer skeleton-line-sm" style="width: 50%; height: 16px;"></div>
+        </div>
+
+        <!-- Filter Bar Skeleton -->
+        <div class="skeleton-filter-bar">
+          <div class="skeleton-shimmer skeleton-line" style="width: 260px; height: 38px; border-radius: 8px;"></div>
+          <div class="skeleton-shimmer skeleton-pill" style="width: 100px; height: 38px;"></div>
+          <div class="skeleton-shimmer skeleton-pill" style="width: 120px; height: 38px;"></div>
+          <div class="skeleton-shimmer skeleton-pill" style="width: 110px; height: 38px;"></div>
+          <div class="skeleton-shimmer skeleton-btn" style="width: 90px; height: 38px; margin-left: auto;"></div>
+        </div>
+
+        <!-- Cards Grid Skeleton -->
+        <div class="skeleton-grid">
+          ${type === "universities" ? this.renderSkeletonUniversityDossiers(6) : this.renderSkeletonProgrammeDossiers(6)}
+        </div>
+      </div>
+    `;
+  },
+
+  showSkeleton(targetSelector, type = "programmes", count = 6) {
+    const el = typeof targetSelector === "string" ? document.querySelector(targetSelector) : targetSelector;
+    if (!el) return;
+    el.setAttribute("data-previous-content", el.innerHTML);
+    if (type === "page") {
+      el.innerHTML = this.renderSkeletonPage();
+    } else if (type === "universities") {
+      el.innerHTML = this.renderSkeletonUniversityDossiers(count);
+    } else if (type === "hero") {
+      el.innerHTML = this.renderSkeletonDetailHero();
+    } else {
+      el.innerHTML = this.renderSkeletonProgrammeDossiers(count);
+    }
+  },
+
+  hideSkeleton(targetSelector, newHtml = null) {
+    const el = typeof targetSelector === "string" ? document.querySelector(targetSelector) : targetSelector;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transition = "opacity 0.25s ease-out";
+    setTimeout(() => {
+      if (newHtml !== null) {
+        el.innerHTML = newHtml;
+      } else {
+        const prev = el.getAttribute("data-previous-content");
+        if (prev) el.innerHTML = prev;
+      }
+      el.style.opacity = "1";
+    }, 250);
   }
 };
