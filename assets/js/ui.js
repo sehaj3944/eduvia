@@ -13,6 +13,28 @@ const EduviaUI = {
     this.updateShortlistBadges();
     this.setupScrollReveals();
     this.setupCookieConsent();
+    this.setupAuthModule();
+  },
+
+  setupAuthModule() {
+    if (typeof EduviaAuth !== "undefined") {
+      EduviaAuth.init();
+    } else {
+      const isSubdir = window.location.pathname.includes("/blog/") || window.location.pathname.includes("/uni/");
+      const scriptPath = isSubdir ? "../assets/js/auth.js" : "assets/js/auth.js";
+      const script = document.createElement("script");
+      script.src = scriptPath;
+      script.onload = () => {
+        if (typeof EduviaAuth !== "undefined") EduviaAuth.init();
+      };
+      document.head.appendChild(script);
+    }
+  },
+
+  openAuthModal(mode = "signin") {
+    if (typeof EduviaAuth !== "undefined") {
+      EduviaAuth.open(mode);
+    }
   },
 
   loadShortlist() {

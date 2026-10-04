@@ -287,6 +287,11 @@
             <span class="material-symbols-outlined text-[20px]">search</span>
           </button>
 
+          <!-- Mobile Login Button -->
+          <button class="mobile-login-btn" onclick="EduviaAuth.open('signin')" title="Student Login / Account" aria-label="Account">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+          </button>
+
           <!-- Shortlist Icon Button -->
           <button class="icon-count-btn" onclick="EduviaUI.openShortlistDrawer()" title="View Saved Programmes" aria-label="Shortlist">
             <span class="material-symbols-outlined text-[20px]">favorite</span>
@@ -294,7 +299,7 @@
           </button>
 
           <!-- Login Link -->
-          <a href="#login" onclick="event.preventDefault(); EduviaUI.showToast('Student Login Portal will open in Phase 04.');" class="nav-login-btn">
+          <a href="#login" onclick="event.preventDefault(); EduviaAuth.open('signin');" class="nav-login-btn">
             Login
           </a>
 
@@ -419,11 +424,17 @@
 
       <!-- Drawer Footer -->
       <div class="mobile-drawer-footer">
+        <div class="mobile-drawer-auth-container">
+          <button type="button" class="mobile-drawer-login-btn" onclick="closeMobileMenu(); EduviaAuth.open('signin');">
+            <span class="material-symbols-outlined text-[18px]">person</span>
+            <span>Student Login / Register</span>
+          </button>
+        </div>
         <a href="discover.html" class="btn btn-primary w-full mb-3 text-center">
           Get Started
         </a>
         <div class="mobile-drawer-footer-meta">
-          <a href="#login" onclick="EduviaUI.showToast('Student Login Portal will open in Phase 04.');">Student Login</a>
+          <a href="#login" onclick="event.preventDefault(); closeMobileMenu(); EduviaAuth.open('signin');">Student Login Portal</a>
           <span>Helpline: <strong>1800-208-3388</strong></span>
         </div>
       </div>
@@ -895,14 +906,17 @@
       <div class="personas-editorial-grid">
         <!-- Situation 1: I Know My Field -->
         <div class="persona-editorial-card">
-          <div class="persona-content-block" style="justify-content: center;">
-            <span class="badge badge-teal mb-2">I KNOW MY FIELD</span>
+          <div class="persona-image-wrapper">
+            <img src="assets/images/students/eduvia-persona-direct-explorer-01.jpg" alt="Focused student researching direct degree pathways in a university library" loading="lazy" />
+            <span class="persona-badge-tag">I KNOW MY FIELD</span>
+          </div>
+          <div class="persona-content-block">
             <h3 class="persona-heading">Direct Degree Explorer</h3>
             <p class="persona-desc">"I already know what I want to study and want to quickly compare top accredited institutions offering that curriculum."</p>
             <div class="bg-surface-tinted p-3 border border-border-card mb-4 text-xs">
               <strong>Connected Pathway:</strong> Direct Degree Directory & Comparison Matrix
             </div>
-            <a href="programmes.html" class="btn btn-dark btn-sm text-center">
+            <a href="programmes.html" class="btn btn-primary btn-sm text-center">
               <span>Explore Degree Options →</span>
             </a>
           </div>
@@ -928,8 +942,11 @@
 
         <!-- Situation 3: Switching Direction -->
         <div class="persona-editorial-card">
-          <div class="persona-content-block" style="justify-content: center;">
-            <span class="badge badge-teal mb-2">I'M SWITCHING DIRECTION</span>
+          <div class="persona-image-wrapper">
+            <img src="assets/images/students/eduvia-persona-tech-pivot-01.jpg" alt="Professional transitioning into tech, studying software engineering" loading="lazy" />
+            <span class="persona-badge-tag">I'M SWITCHING DIRECTION</span>
+          </div>
+          <div class="persona-content-block">
             <h3 class="persona-heading">Non-Technical to Tech Pivot</h3>
             <p class="persona-desc">"I want to move into a new academic or professional field, such as software development or data science, from a non-tech background."</p>
             <div class="bg-surface-tinted p-3 border border-border-card mb-4 text-xs">
@@ -943,8 +960,11 @@
 
         <!-- Situation 4: Keep Options Open -->
         <div class="persona-editorial-card">
-          <div class="persona-content-block" style="justify-content: center;">
-            <span class="badge badge-blue mb-2">I WANT TO KEEP MY OPTIONS OPEN</span>
+          <div class="persona-image-wrapper">
+            <img src="assets/images/students/eduvia-persona-multi-stream-01.jpg" alt="Student comparing multiple degree specialisations with analytical tables" loading="lazy" />
+            <span class="persona-badge-tag">I WANT TO KEEP MY OPTIONS OPEN</span>
+          </div>
+          <div class="persona-content-block">
             <h3 class="persona-heading">Multi-Stream Evaluator</h3>
             <p class="persona-desc">"I'm comparing several degrees and elective tracks across management and data before deciding on a single pathway."</p>
             <div class="bg-surface-tinted p-3 border border-border-card mb-4 text-xs">
@@ -1151,6 +1171,7 @@
   <!-- Modular Scripts -->
   <script src="assets/js/data.js"></script>
   <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/auth.js"></script>
   <script src="assets/js/ui.js"></script>
   <script src="assets/js/comparison.js"></script>
   <script src="assets/js/filters.js"></script>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -402,6 +402,11 @@
           <!-- Mobile Search Button -->
           <button class="mobile-search-btn" onclick="if (typeof EduviaSearch !== 'undefined' && EduviaSearch.open) { EduviaSearch.open(); } else if (typeof openSearchModal === 'function') { openSearchModal(); }" title="Search" aria-label="Search">
             <span class="material-symbols-outlined text-[20px]">search</span>
+          </button>
+
+          <!-- Mobile Login Button -->
+          <button class="mobile-login-btn" onclick="EduviaAuth.open('signin')" title="Student Login / Account" aria-label="Account">
+            <span class="material-symbols-outlined text-[20px]">person</span>
           </button>
 
           <!-- Shortlist Icon Button -->

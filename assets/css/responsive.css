@@ -74,6 +74,7 @@ html, body {
   }
   
   .mobile-search-btn,
+  .mobile-login-btn,
   .mobile-menu-toggle {
     display: flex !important;
     align-items: center !important;
@@ -88,6 +89,7 @@ html, body {
     color: #F5F1EC !important;
     box-shadow: none !important;
     cursor: pointer !important;
+    text-decoration: none !important;
   }
 
   .nav-actions .btn-primary {
@@ -315,6 +317,7 @@ html, body {
   }
 
   .mobile-search-btn,
+  .mobile-login-btn,
   .mobile-menu-toggle {
     width: 42px !important;
     height: 42px !important;
@@ -330,6 +333,7 @@ html, body {
     box-shadow: none !important;
     padding: 0 !important;
     cursor: pointer !important;
+    text-decoration: none !important;
   }
 
   /* Mobile Hero Redesign: Focused, Fast, Editorial */

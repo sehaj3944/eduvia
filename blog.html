@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -382,6 +382,11 @@
             <span class="material-symbols-outlined text-[20px]">search</span>
           </button>
 
+          <!-- Mobile Login Button -->
+          <button class="mobile-login-btn" onclick="EduviaAuth.open('signin')" title="Student Login / Account" aria-label="Account">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+          </button>
+
           <!-- Shortlist Icon Button -->
           <button class="icon-count-btn" onclick="if(typeof EduviaUI!=='undefined') EduviaUI.openShortlistDrawer()" title="View Saved Programmes" aria-label="Shortlist">
             <span class="material-symbols-outlined text-[20px]">favorite</span>
@@ -522,6 +527,12 @@
 
       <!-- Drawer Footer -->
       <div class="mobile-drawer-footer">
+        <div class="mobile-drawer-auth-container">
+          <button type="button" class="mobile-drawer-login-btn" onclick="if(typeof closeMobileMenu==='function')closeMobileMenu(); EduviaAuth.open('signin');">
+            <span class="material-symbols-outlined text-[18px]">person</span>
+            <span>Student Login / Register</span>
+          </button>
+        </div>
         <a href="discover.html" class="btn btn-primary w-full mb-3 text-center">
           Get Started
         </a>

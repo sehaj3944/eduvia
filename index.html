@@ -336,6 +336,11 @@
             <span class="material-symbols-outlined text-[20px]">search</span>
           </button>
 
+          <!-- Mobile Login Button -->
+          <button class="mobile-login-btn" onclick="EduviaAuth.open('signin')" title="Student Login / Account" aria-label="Account">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+          </button>
+
           <!-- Shortlist Icon Button -->
           <button class="icon-count-btn" onclick="EduviaUI.openShortlistDrawer()" title="View Saved Programmes" aria-label="Shortlist">
             <span class="material-symbols-outlined text-[20px]">favorite</span>
@@ -343,7 +348,7 @@
           </button>
 
           <!-- Login Link -->
-          <a href="#login" onclick="event.preventDefault(); EduviaUI.showToast('Student Login Portal will open in Phase 04.');" class="nav-login-btn">
+          <a href="#login" onclick="event.preventDefault(); EduviaAuth.open('signin');" class="nav-login-btn">
             Login
           </a>
 
@@ -476,11 +481,17 @@
 
       <!-- Drawer Footer -->
       <div class="mobile-drawer-footer">
+        <div class="mobile-drawer-auth-container">
+          <button type="button" class="mobile-drawer-login-btn" onclick="closeMobileMenu(); EduviaAuth.open('signin');">
+            <span class="material-symbols-outlined text-[18px]">person</span>
+            <span>Student Login / Register</span>
+          </button>
+        </div>
         <a href="discover.html" class="btn btn-primary w-full mb-3 text-center">
           Get Started
         </a>
         <div class="mobile-drawer-footer-meta">
-          <a href="#login" onclick="EduviaUI.showToast('Student Login Portal will open in Phase 04.');">Student Login</a>
+          <a href="#login" onclick="event.preventDefault(); closeMobileMenu(); EduviaAuth.open('signin');">Student Login Portal</a>
           <span>Helpline: <strong>1800-208-3388</strong></span>
         </div>
       </div>
@@ -2260,6 +2271,7 @@
   <!-- Modular Scripts -->
   <script src="assets/js/data.js"></script>
   <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/auth.js"></script>
   <script src="assets/js/ui.js"></script>
   <script src="assets/js/comparison.js"></script>
   <script src="assets/js/filters.js"></script>
