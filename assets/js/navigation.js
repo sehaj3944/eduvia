@@ -151,9 +151,14 @@ const EduviaNavigation = {
       };
     }
 
-    // Accordions inside Mobile Drawer
+    // Accordions inside Mobile Drawer (Only buttons or items with accordion content)
     const accordionHeaders = document.querySelectorAll(".mobile-accordion-header");
     accordionHeaders.forEach(header => {
+      // If it's a direct anchor link with href, do not intercept click
+      if (header.tagName.toLowerCase() === "a" || header.hasAttribute("href")) {
+        return;
+      }
+
       header.onclick = (e) => {
         if (e) {
           e.preventDefault();
@@ -180,8 +185,14 @@ const EduviaNavigation = {
 
     // Close drawer on internal link click
     document.querySelectorAll(".mobile-nav-panel a").forEach(link => {
-      link.addEventListener("click", () => {
-        this.closeMobileDrawer();
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        if (href && !href.startsWith("#") && !href.startsWith("javascript:")) {
+          // Standard page navigation - allow normal browser redirect
+          this.closeMobileDrawer();
+        } else if (href && href.startsWith("#")) {
+          this.closeMobileDrawer();
+        }
       });
     });
 
